@@ -1,0 +1,30 @@
+[package]
+name = "soulgem"
+version = "0.2.0"
+edition = "2024"
+rust-version = "1.89"
+license = "MIT"
+description = "Version control for directories of big binary files (game mods and the like)"
+
+[dependencies]
+anyhow = "1"
+blake3 = { version = "1.5", features = ["mmap", "rayon"] }
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+clap = { version = "4.5", features = ["derive"] }
+filetime = "0.2"
+ignore = "0.4"
+indicatif = "0.17"
+postcard = { version = "1", features = ["use-std"] }
+rayon = "1.10"
+reflink-copy = "0.1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+zstd = { version = "0.13", features = ["zstdmt"] }
+
+[dev-dependencies]
+tempfile = "3"
+filetime = "0.2"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
